@@ -25,6 +25,6 @@ function euler_method(delta_t, total_time)
     polar(theta,r)
 %     legend('theta','radius');
     title('Polar Plot');
-    xlabel('Time(s)');
+   
     
 end
