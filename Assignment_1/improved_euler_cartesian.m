@@ -31,6 +31,8 @@ function improved_euler_cartesian(delta_t, total_time)
     dx(1) = 0;
     dy(1) = 5/r(1);
     v_r = 0;
+    x(1) = 1;
+    y(1) = 0;
     
     
     for i=1:length(t)-1
