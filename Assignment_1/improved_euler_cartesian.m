@@ -45,6 +45,8 @@ function improved_euler_cartesian(delta_t, total_time)
     end
     
     plot(x,y)
+    pbaspect([1 1 1]) % set aspect ratio 1
+    grid on;
 %     legend('theta','radius');
     title('Cartesian Plot : Improved Euler Method');
   
