@@ -28,3 +28,13 @@ function euler_method(delta_t, total_time)
    
     
 end
+
+% Plots
+% subplot(2,2,1)
+% euler_method(1,5)
+% subplot(2,2,2)
+% euler_method(0.1,1.3)
+% subplot(2,2,3)
+% euler_method(0.01,1.3)
+% subplot(2,2,4)
+% euler_method(0.001,1.3)

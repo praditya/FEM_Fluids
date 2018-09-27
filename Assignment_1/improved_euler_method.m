@@ -24,7 +24,17 @@ function improved_euler_method(delta_t, total_time)
     
     polar(theta,r)
 %     legend('theta','radius');
-    title('Polar Plot : Improved Euler Method');
+    title('Polar Plot : Improved Euler');
     
     
 end
+
+% Plots
+% subplot(2,2,4)
+% improved_euler_method(0.001,1.3)
+% subplot(2,2,3)
+% improved_euler_method(0.01,1.3)
+% subplot(2,2,2)
+% improved_euler_method(0.1,1.3)
+% subplot(2,2,1)
+% improved_euler_method(1,5)

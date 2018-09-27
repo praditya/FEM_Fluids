@@ -36,12 +36,14 @@ function euler_cartesian(delta_t, total_time)
         theta(i+1) = theta(i) + delta_t*5/(r(i)^2);
         dx(i) = -5*sin(theta(i))/r(i);
         dy(i) =  5*cos(theta(i))/r(i);
+%         dy(i) = -5*x(i)/(x(i)^2 + y(i)^2);
+%         dx(i) =  5*y(i)/(x(i)^2 + y(i)^2);
         x(i+1) = x(i) + delta_t*dx(i);
         y(i+1) = y(i) + delta_t*dy(i);
         
     end
     
-    plot(x,y)
+    plot(x,y,'o-')
     pbaspect([1 1 1]) % set aspect ratio 1
 %     xlim([-1.5 1.5]);
 %     ylim([-1.5 1.5]);
@@ -49,3 +51,13 @@ function euler_cartesian(delta_t, total_time)
     title('Cartesian Plot : Euler Method');
     
 end
+
+% Plots
+% subplot(2,2,1)
+% euler_cartesian(1,5)
+% subplot(2,2,2)
+% euler_cartesian(0.1,1.3)
+% subplot(2,2,3)
+% euler_cartesian(0.01,1.3)
+% subplot(2,2,4)
+% euler_cartesian(0.001,1.3)
