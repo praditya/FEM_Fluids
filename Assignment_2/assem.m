@@ -1,7 +1,13 @@
 % assembly
 
+local;
+
 a = 2;
-e = 10;
+e = 100; 
+% linear elements : nodes = e+1
+n = e;
+h = 1/n;
+q = 1;
 
 LM = zeros(a,e);
 
@@ -25,4 +31,19 @@ for i=1:e
 end    
 
 % Assemble Force Matrix
-    
+F_global = zeros(e+1,1);
+
+for i=1:e
+    F_global(LM(1,i)) = F_global(LM(j,i)) + (q*n/6)*( 2*(LM(1,i)-1)*h + (LM(2,i)-1)*h );
+    F_global(LM(2,i)) = F_global(LM(2,i)) + (q*n/6)*( (LM(1,i)-1)*h + 2*(LM(2,i)-1)*h );
+end
+
+% Get displacement field 
+% K_global*d = F_global
+% Thomas algorithm
+
+d = thomasalgo(K_global,F_global);
+x = 0:h:1;
+scatter(x,d)
+
+
