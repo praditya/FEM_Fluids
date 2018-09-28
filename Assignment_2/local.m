@@ -1,9 +1,9 @@
 
 clear all;
 % local
-n = 100; % number of elements
+n = 4; % number of elements
 h = 1/n; % uniform mesh grid 
-q = 1;
+q = 64;
 
 % local Stiffness matrix
 K_local = n*[ 1 -1 ; -1 1];
