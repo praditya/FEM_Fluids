@@ -1,13 +1,7 @@
 % assembly
 
 local;
-
-a = 2;
-e = 4; 
-% linear elements : nodes = e+1
-n = e;
-h = 1/n;
-q = 16*6;
+read_params;
 
 LM = zeros(a,e);
 
@@ -42,8 +36,13 @@ end
 % K_global*d = F_global
 % Thomas algorithm
 
-d = thomasalgo(K_global,F_global);
+d = thomasalgo(K_global,F_global); % solution to nodal displacements
 x = 0:h:1;
 % scatter(x,d)
+
+
+% 
+
+
 
 
