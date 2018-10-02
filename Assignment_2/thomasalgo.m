@@ -1,4 +1,4 @@
-%% thomasalgo
+%% thomasalgo algorithm
 function d = thomasalgo(K,F) 
 
 p = length(F);
@@ -24,7 +24,8 @@ for i = 2:p
         F(i) = F(i)-F(i-1)*f;
 end
 
-d(p) = 0;
+d(p) = 0; % Boundary condition at right end
+
 for i = (p-1):-1:1        
        d(i) = (F(i)-c(i)*d(i+1))/b(i);
 end
