@@ -35,9 +35,11 @@ end
 
 % Get displacement field 
 % K_global*d = F_global
-% Thomas algorithm
+% Thomas algorithm - Used for sparse matrices : Tridiagonal K_global
 
 d = thomasalgo(K_global,F_global); % solution to nodal displacements
+% else would have removed last row and column to make K non-singular
+% if size of K is reduced, then direct inverse can be taken
 x = 0:h:1;
 figure(1)
 plot(x,d,'-o','LineWidth',1.5) 
@@ -50,8 +52,9 @@ du_h = (1/h)*(d(2:e+1)-d(1:e));
 % exact solution
 u = @(y)q*(1 - y^3)/6;
 du = @(y)(-q*y^2/2); % derivative of exact solution
-error = zeros(1,e);
-p = zeros(1,e);
+
+error = zeros(1,e); % initialised re_x
+p = zeros(1,e); % position where re_x are evaluated
 
 for i=1:e
     p(i) = (2*i-1)*h/2;
@@ -59,13 +62,19 @@ for i=1:e
     error(i) = abs(du(p(i))-du_h(i))/(q/2);
 end    
 
+% rat(error) for rational form of re_x
+% Obtained re_x, for all values of h or no. of elements
+
 
 %% re_x plot 
-% 
-% h_2 = [ 1 0.5 0.25 1/10 1/50 1/100];
-% error_2 = [1/12 1/48 1/192 1/1200 1/30000 1/120000];
-% figure(2)
-% plot(log(h_2),log(error_2),'-o','LineWidth',2);
-% xlabel('ln(h)');
-% ylabel('ln(re_x)');
-% title('ln(re_x) vs ln(h)');
+
+h_2 = [ 1 0.5 0.25 1/10 1/50 1/100];
+error_2 = [1/12 1/48 1/192 1/1200 1/30000 1/120000];
+figure(2)
+plot(log(h_2),log(error_2),'-o','LineWidth',2);
+xlabel('ln(h)');
+ylabel('ln(re_x)');
+title('ln(re_x) vs ln(h)');
+
+figure(3)
+slope; % slope of displacement field (du_h)
