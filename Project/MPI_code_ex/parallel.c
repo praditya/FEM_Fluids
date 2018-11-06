@@ -10,9 +10,9 @@
    
    void main(int argc, char **argv) 
    {
-      long int sum, partial_sum,start_time,end_time;
+      double start_time,end_time;
       MPI_Status status;
-      int my_id, root_process, ierr, i, num_rows, num_procs,
+      int my_id, root_process, ierr, i, num_rows, num_procs,partial_sum,sum,
          an_id, num_rows_to_receive, avg_rows_per_process, 
          sender, num_rows_received, start_row, end_row, num_rows_to_send;
 
@@ -29,7 +29,7 @@
       ierr = MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
       ierr = MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
       start_time = MPI_Wtime();
-      printf("Start_Process %ld for processor %d\n",start_time,my_id);	
+      printf("Start_Process %lf for processor %d\n",start_time,my_id);	
       if(my_id == root_process) {
          
          /* I must be the root process, so I will query the user
@@ -77,7 +77,7 @@
             sum += array[i];   
          } 
 
-         printf("sum %li calculated by root process\n", sum);
+         printf("sum %d calculated by root process\n", sum);
 
          /* and, finally, I collet the partial sums from the slave processes, 
           * print them, and add them to the grand sum, and print it */
@@ -89,12 +89,12 @@
   
             sender = status.MPI_SOURCE;
 
-            printf("Partial sum %li returned from process %i\n", partial_sum, sender);
+            printf("Partial sum %d returned from process %i\n", partial_sum, sender);
      
             sum += partial_sum;
          }
 
-         printf("The grand total is: %li\n", sum);
+         printf("The grand total is: %d\n", sum);
       }
 
       else {
@@ -123,8 +123,8 @@
                return_data_tag, MPI_COMM_WORLD);
       }
       end_time = MPI_Wtime();
-      printf("End_time %ld for processor %d\n",end_time,my_id);
-      printf("Total time by processor %d in seconds is %ld\n",my_id,(end_time-start_time));
+      printf("End_time %lf for processor %d\n",end_time,my_id);
+      printf("Total time by processor %d in seconds is %lf\n",my_id,(end_time-start_time));
       ierr = MPI_Finalize();
    }
 
