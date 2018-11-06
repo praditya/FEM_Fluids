@@ -86,4 +86,3 @@
       printf("Total time by processor %d in microseconds is %lf\n",my_id,(end_time-start_time)*1000000);
       ierr = MPI_Finalize();
    }
-

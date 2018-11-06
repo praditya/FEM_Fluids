@@ -5,7 +5,7 @@
 void main(int argc, char **argv) 
    {
       double partial_sum,start_time,end_time;
-      int my_id, sum, g_sum, ierr, i, num_rows, num_procs, ista, iend, array[9]={0};
+      int my_id, sum, g_sum, ierr, i, num_rows, num_procs, ista, iend, array[999999]={0};
       
       ierr = MPI_Init(&argc, &argv);
       ierr = MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
@@ -13,8 +13,8 @@ void main(int argc, char **argv)
       start_time = MPI_Wtime();
       printf("Start_Process %lf for processor %d\n",start_time,my_id);
 
-      ista = my_id * 3 + 1;
- 	  iend = ista + 2;
+      ista = my_id * 333333 + 1;
+ 	  iend = ista + 333333;
 
  	  for (i=ista;i<=iend;i++)
  	  	array[i]=i;
