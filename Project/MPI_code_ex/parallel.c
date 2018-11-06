@@ -10,7 +10,7 @@
    
    void main(int argc, char **argv) 
    {
-      long int sum, partial_sum;
+      long int sum, partial_sum,start_time,end_time;
       MPI_Status status;
       int my_id, root_process, ierr, i, num_rows, num_procs,
          an_id, num_rows_to_receive, avg_rows_per_process, 
@@ -28,7 +28,8 @@
       
       ierr = MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
       ierr = MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
-
+      start_time = MPI_Wtime();
+      printf("Start_Process %ld for processor %d\n",start_time,my_id);	
       if(my_id == root_process) {
          
          /* I must be the root process, so I will query the user
@@ -121,6 +122,9 @@
          ierr = MPI_Send( &partial_sum, 1, MPI_LONG, root_process, 
                return_data_tag, MPI_COMM_WORLD);
       }
+      end_time = MPI_Wtime();
+      printf("End_time %ld for processor %d\n",end_time,my_id);
+      printf("Total time by processor %d in seconds is %ld\n",my_id,(end_time-start_time));
       ierr = MPI_Finalize();
    }
 
